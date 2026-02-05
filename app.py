@@ -6,9 +6,7 @@ import numpy as np
 # Data Load & Basic Cleaning
 @st.cache_data
 def load_data():
-    # Aapka cleaned data yahan load hoga
-    # Agar aapne file save ki hai toh wo path dein
-    df = pd.read_csv('merged_sales_data.csv') # File name check karlo ustaad
+    df = pd.read_csv('merged_sales_data.csv') 
     df['Order Date'] = pd.to_datetime(df['Order Date'])
     df = df.dropna(how='all')
     df = df[df['Order Date'] != 'Order Date']
@@ -61,7 +59,7 @@ prod_sales = filtered_df.groupby('Product')['Sales'].sum().sort_values(ascending
 fig4 = px.pie(prod_sales, values='Sales', names='Product', hole=0.3)
 st.plotly_chart(fig4)
 
-st.write("Ustaad, Dashboard is Ready!")
+st.write("Dashboard is Ready!")
 # app.py ke end mein ye add karo ustaad
 st.divider()
 st.header("Key Insights & Observations")

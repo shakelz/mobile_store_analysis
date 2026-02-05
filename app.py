@@ -6,7 +6,9 @@ import numpy as np
 # Data Load & Basic Cleaning
 @st.cache_data
 def load_data():
-    df = pd.read_csv('merged_sales_data.csv') 
+    # Aapka cleaned data yahan load hoga
+    # Agar aapne file save ki hai toh wo path dein
+    df = pd.read_csv('merged_sales_data.csv') # File name check karlo ustaad
     df['Order Date'] = pd.to_datetime(df['Order Date'])
     df = df.dropna(how='all')
     df = df[df['Order Date'] != 'Order Date']
@@ -59,15 +61,4 @@ prod_sales = filtered_df.groupby('Product')['Sales'].sum().sort_values(ascending
 fig4 = px.pie(prod_sales, values='Sales', names='Product', hole=0.3)
 st.plotly_chart(fig4)
 
-st.write("Dashboard is Ready!")
-# app.py ke end mein ye add karo ustaad
-st.divider()
-st.header("Key Insights & Observations")
-
-st.markdown("""
-* **Sales Consistency:** Mean sales are stable across all seasons ($182 - $187), indicating year-round demand.
-* **Working vs Weekend:** No significant difference in buying patterns (Mean ~185.5), suggesting needs-based purchasing.
-* **Peak Hours:** High traffic observed during 11 AM - 1 PM and 6 PM - 8 PM (Lunch & Post-work hours).
-* **Weather Impact:** Statistical analysis shows weather has no significant impact on electronics sales.
-* **Price Sensitivity:** A negative correlation exists between Price and Quantity Ordered.
-""")
+st.write("Ustaad, Dashboard is Ready!")
